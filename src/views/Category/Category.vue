@@ -5,7 +5,7 @@
        <div class="col-12 text-center">
          <h3 class="pt-3">Our store Categories</h3>
          <router-link :to="{ name: 'AddCategory'}">
-            <button class="btn" style="float:left"> Add Category</button>
+            <button class="btn btn-success" style="float:left"> Add Category</button>
          </router-link>
        </div>
     </div>

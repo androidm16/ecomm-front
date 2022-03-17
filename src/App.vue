@@ -1,11 +1,23 @@
 <template>
-  <div id="nav">
+    <Navbar/>
+  <div id="nav"> 
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
+   </div> 
   <router-view/>
 </template>
-
+<script>
+import Navbar from "./components/Navbar.vue"
+export default {
+  name: 'App',
+  components: { Navbar },
+   data() {
+     return {
+       baseURL: "https://my-fullstack-pject1.herokuapp.com/"
+     }
+   } 
+  };
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
