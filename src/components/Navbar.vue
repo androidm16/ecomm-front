@@ -1,11 +1,10 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Navbar content -->
-    <!--    Logo-->
     <router-link class="navbar-brand" :to="{ name: 'Home' }">
       <!-- <img id="logo" src="../assets/logo.png" /> -->
     </router-link>
-    <!--    Burger Button-->
+    <!-- My Navbar Burger Button-->
     <button
       class="navbar-toggler"
       type="button"
@@ -18,7 +17,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!--      Search Bar-->
+      <!-- Search Bar (still in progress)-->
       <form class="form-inline ml-auto mr-auto">
         <div class="input-group">
           <input
@@ -47,13 +46,92 @@
           </div>
         </div>
       </form>
-      <!-- <router-link :to="{ name: 'Admin' }"> Admin </router-link> -->
+
+            <!--Bootstrap navbar Dropdowns-->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link text-light dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Browse
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <router-link class="dropdown-item" :to="{ name: 'Home' }"
+              >Home</router-link
+            >
+
+            <router-link class="dropdown-item" :to="{ name: 'Category' }"
+              >Category</router-link
+            >
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link text-light dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Accounts
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <router-link
+              class="dropdown-item"
+              v-if="!token"
+              :to="{ name: 'login' }"
+              >Log In</router-link
+            >
+  
+            <a class="dropdown-item" v-if="token" href="#" @click="signout"
+              >Sign Out</a
+            >
+          </div>
+        </li>
+
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+          <div id="cart">
+            <!-- <span id="nav-cart-count">{{ cartCount }}</span> -->
+
+          </div>
+        </li>
+      </ul>
     </div>
   </nav>
 </template>
 <script>
 export default {
   name: "Navbar",
+    // props: ["cartCount"],
+  data() {
+    return {
+      token: null,
+    };
+  },
+  methods: {
+    signout() {
+      localStorage.removeItem("jwt");
+      this.token = null;
+      // this.$emit("resetCartCount");
+      this.$router.push({ name: "Home" });
+
+    },
+  },
+  mounted() {
+    this.token = localStorage.getItem("jwt");
+  },
 };
 </script>
 <style scoped>
@@ -64,5 +142,35 @@ export default {
 }
 a {
   color: white;
+}
+#logo {
+  width: 150px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.nav-link {
+  color: rgba(255, 255, 255);
+}
+#search-button-navbar {
+  background-color: #febd69;
+  border-color: #febd69;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+#nav-cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+  margin-left: 10px;
+}
+#cart {
+  position: relative;
 }
 </style>
