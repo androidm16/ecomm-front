@@ -173,4 +173,17 @@ a {
 #cart {
   position: relative;
 }
+.dropdown-item {
+  color: black;
+  background: (rgba(18, 102, 241, 0.5));
+      box-shadow: 0 0 1px #ccc;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transform-origin: 0 0;
+    box-shadow:0px 0px 0 100px lightseagreen inset;
+}
+.dropdown-item:hover{
+      -webkit-box-shadow:0px 0px 0 0px lightseagreen inset;
+      -webkit-transform: scale(1);
+}
 </style>
