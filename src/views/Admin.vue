@@ -15,6 +15,7 @@ export default {
 </script>
 <style>
     .btn {
+        margin-top: 100px;
         margin-bottom: 20px;
     }
 </style>

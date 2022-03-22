@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Navbar content -->
     <router-link class="navbar-brand" :to="{ name: 'Home' }">
+    <li id="title"><a href="#"><strong><span style="color: Blue; font-size: 30px">S</span>iyabonga <span style="color: Blue; font-size: 30px">S</span>tore</strong></a></li>
       <!-- <img id="logo" src="../assets/logo.png" /> -->
     </router-link>
     <!-- My Navbar Burger Button-->
@@ -69,6 +70,10 @@
             <router-link class="dropdown-item" :to="{ name: 'Category' }"
               >Category</router-link
             >
+
+            <router-link class="dropdown-item" :to="{ name: 'Product' }"
+              >Product</router-link
+            >
           </div>
         </li>
 
@@ -90,6 +95,12 @@
               v-if="!token"
               :to="{ name: 'login' }"
               >Log In</router-link
+            >
+            <router-link
+              class="dropdown-item"
+              v-if="!token"
+              :to="{ name: 'signup' }"
+              >Signup</router-link
             >
   
             <a class="dropdown-item" v-if="token" href="#" @click="signout"
@@ -185,5 +196,22 @@ a {
 .dropdown-item:hover{
       -webkit-box-shadow:0px 0px 0 0px lightseagreen inset;
       -webkit-transform: scale(1);
+}
+
+.navbar {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #ee7724,
+    #d8363a,
+    #dd3675,
+    #b44593
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 </style>

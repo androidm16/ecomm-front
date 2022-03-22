@@ -35,7 +35,7 @@ export default {
     },
     methods: {
        async getCategories() {
-           await axios.get(`${this.baseURL}/category`)
+           await axios.get(`https://my-fullstack-pject1.herokuapp.com/category`)
            .then(res => this.categories = res.data)
            .catch(err => console.log(err))
        }

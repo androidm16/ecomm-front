@@ -4,13 +4,14 @@
     <div id="background-div" class="page-holder bg-cover">
 
       <div class="container py-5">
-
+        <h1 style="margin-top: 100px;"><span style="color: Blue; font-size: 60px">W</span>elcome!!<br>
+        to Siya's Online Book Store</h1>
       </div>
     </div>
 
     <div id="start-shopping" class="container">
       <div class="row">
-        <div class="col-12 text-left">
+        <div class="col-12 text-center">
           <h2 class="pt-3">Top Categories</h2>
         </div>
       </div>
@@ -25,7 +26,7 @@
     <hr>
     <div class="container">
       <div class="row">
-        <div class="col-12 text-left">
+        <div class="col-12 text-center">
           <h2 class="pt-3">Top Products</h2>
         </div>
       </div>
@@ -40,7 +41,7 @@
 </template>
 
 <script>
-   import ProductBox from "../components/ProductBox";
+  import ProductBox from "../components/ProductBox";
   import CategoryBox from "../components/Category/CategoryBox";
   export default {
     name: 'Home',

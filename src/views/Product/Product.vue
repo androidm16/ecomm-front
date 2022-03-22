@@ -20,8 +20,21 @@
 </template>
 <script>
     import ProductBox from "../../components/ProductBox";
+
     export default {
-        components: {ProductBox},
-        props:["products"]
+    name: 'Product',
+    components : {ProductBox},
+    props : [ "baseURL" , "products" ],
+    mounted(){
+    if (this.$route.name=='AdminProduct' && !localStorage.getItem('Access_token')) {
+      this.$router.push({name : 'Login'});
     }
+  }
+}
+
+
+    // export default {
+    //     components: {ProductBox},
+    //     props:["products"]
+    // }
 </script>

@@ -63,7 +63,7 @@
                       class="d-flex align-items-center justify-content-center pb-4"
                     >
                       <p class="mb-0 me-2">Don't have an account?</p>
-                      <button type="button" class="btn btn-outline-danger">
+                      <button type="button" class="btn btn-outline-danger"><a href=""></a>
                         Create new
                       </button>
                     </div>
@@ -179,4 +179,7 @@ export default {
     border-bottom-right-radius: 0.3rem;
   }
 }
+   .gradient-form {
+    background: url(../assets/360_lock.jpg)
+  } 
 </style>

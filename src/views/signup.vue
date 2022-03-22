@@ -1,41 +1,41 @@
 <template>
-    <div class="container">
+    <div class="container" style="margin-top: 100px">
 <div class="card bg-light">
 <article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Create Account</h4>
-	<p class="text-center">Get started with your free account</p>
-	<form>
-	<div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i></span>
-		 </div>
+  <h4 class="card-title mt-3 text-center">Create Account</h4>
+  <p class="text-center">Get started with your free account</p>
+  <form @submit.prevent="signup">
+  <div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i></span>
+     </div>
         <input name="" class="form-control" placeholder="Full name" type="text">
     </div>
     <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
-		 </div>
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
+     </div>
         <input name="" class="form-control" placeholder="Email address" type="email">
     </div> 
     <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-phone"></i></span>
-		</div>
-		<select class="custom-select" style="max-width: 120px;">
-		    <option selected="">+27</option>
-		</select>
-    	<input name="" class="form-control" placeholder="Phone number" type="text">
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-phone"></i></span>
+    </div>
+    <select class="custom-select" style="max-width: 120px;">
+        <option selected="">+27</option>
+    </select>
+      <input name="" class="form-control" placeholder="Phone number" type="text">
     </div> 
     <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i></span>
-		</div>
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+    </div>
         <input class="form-control" placeholder="Create password" type="password">
     </div> 
     <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i></span>
-		</div>
+      <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+    </div>
         <input class="form-control" placeholder="Repeat password" type="password">
     </div>
     <div class="form-group">
@@ -117,5 +117,21 @@ export default {
     top: 55%;
     left: 0;
     z-index: 1;
+}
+.bg-light {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #ee7724,
+    #d8363a,
+    #dd3675,
+    #b44593
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
 </style>

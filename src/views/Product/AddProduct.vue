@@ -42,40 +42,117 @@
     </div>
 </template>
 <script>
-    import axios from 'axios'
-    import swal from 'sweetalert'
-    export default {
-        props: ["baseURL", "categories"],
-        data() {
-            return {
-                id: null,
-                categoryId: null,
-                name: null,
-                description: null,
-                imageURL: null,
-                price: null
-            }
-        },
-        methods: {
-            addProduct() {
-                const newProduct = {
-                    categoryId: this.categoryId,
-                    description: this.description,
-                    name: this.name,
-                    imageURL: this.imageURL,
-                    price: this.price
-                };
-                axios.post(this.baseURL+"product/add", newProduct)
-                .then(() => {
-                    this.$router.push({name: 'AdminProduct'});
-                    swal({
-                        text: "Product added",
-                        icon: "success"
-                    })
-                }).catch((err)=> {
-                    console.log("err", err);
-                })
-            }
-        }
+     import axios from 'axios';
+     import swal from 'sweetalert';
+export default {
+  data(){
+    return {
+      id : "",
+      categoryId : "",
+      name : "",
+      description : "",
+      imageURL : "",
+      price : ""
     }
+  },
+  props : ["baseURL", "products", "categories"],
+  methods : {
+    async addProduct() {
+      const newProduct = {
+        id : this.id,
+        categoryId : this.categoryId,
+        name : this.name,
+        description : this.description,
+        imageURL : this.imageURL,
+        price : this.price
+      }
+      await axios({
+        method: 'post',
+        url: this.baseURL+"Product/Product/add",
+        data : JSON.stringify(newProduct),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        //sending the event to parent to handle
+        this.$emit("fetchData");
+        this.$router.push({name : 'AdminProduct'});
+        swal({
+          text: "Product is Added",
+          icon: "success",
+          closeOnClickOutside: false,
+        });
+        return res;
+      })
+      .catch(err => console.log(err));
+    }
+  },
+  mounted() {
+    if (!localStorage.getItem('access_token')) {
+      this.$router.push({name : 'Login'});
+    }
+  }
+}
 </script>
+<style scoped>
+h4 {
+  font-family: 'Roboto', sans-serif;
+  color: #484848;
+  font-weight: 700;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     import axios from 'axios'
+//     import swal from 'sweetalert'
+//     export default {
+//         props: ["baseURL", "categories"],
+//         data() {
+//             return {
+//                 id: null,
+//                 categoryId: null,
+//                 name: null,
+//                 description: null,
+//                 imageURL: null,
+//                 price: null
+//             }
+//         },
+//         methods: {
+//             addProduct() {
+//                 const newProduct = {
+//                     categoryId: this.categoryId,
+//                     description: this.description,
+//                     name: this.name,
+//                     imageURL: this.imageURL,
+//                     price: this.price
+//                 };
+//                 axios.post(this.baseURL+"product/add", newProduct)
+//                 .then(() => {
+//                     this.$router.push({name: 'AdminProduct'});
+//                     swal({
+//                         text: "Product added",
+//                         icon: "success"
+//                     })
+//                 }).catch((err)=> {
+//                     console.log("err", err);
+//                 })
+//             }
+//         }
+//     }

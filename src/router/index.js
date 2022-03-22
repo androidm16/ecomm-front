@@ -4,9 +4,9 @@ import AddCategory from '../views/Category/AddCategory'
 import Category from '../views/Category/Category'
 import Product from '../views/Product/Product'
 import Admin from '../views/Admin'
-import AddProduct from "../views/Product/AddProduct";
+import AddProduct from "../views/Product/AddProduct"
 import Login from '../views/login.vue'
-// import Signup from '../views/signup.vue'
+import Signup from '../views/signup.vue'
 
 const routes = [
   {
@@ -48,15 +48,20 @@ const routes = [
     component: AddProduct
   },
   {
+    path: '/product',
+    name: 'Product',
+    component: Product
+  },
+  {
     path: '/login',
     name: 'login',
     component: Login
   },
-  // {
-  //   path: '/signup',
-  //   name: 'signup',
-  //   component: Signup
-  // }
+  {
+    path: '/signup',
+    name: 'signup',
+    component: Signup
+  }
 ]
 
 const router = createRouter({
