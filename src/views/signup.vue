@@ -9,13 +9,13 @@
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-user"></i></span>
      </div>
-        <input name="" class="form-control" placeholder="Full name" type="text">
+        <input name="" class="form-control" placeholder="Full name" type="text" v-model="name" required>
     </div>
     <div class="form-group input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-envelope"></i></span>
      </div>
-        <input name="" class="form-control" placeholder="Email address" type="email">
+        <input name="" class="form-control" placeholder="Email address" type="email" v-model="email" required>
     </div> 
     <div class="form-group input-group">
       <div class="input-group-prepend">
@@ -24,77 +24,146 @@
     <select class="custom-select" style="max-width: 120px;">
         <option selected="">+27</option>
     </select>
-      <input name="" class="form-control" placeholder="Phone number" type="text">
+      <input name="" class="form-control" placeholder="Phone number" type="number" v-model="contact" required>
     </div> 
     <div class="form-group input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-lock"></i></span>
     </div>
-        <input class="form-control" placeholder="Create password" type="password">
+        <input class="form-control" placeholder="Create password" type="password" v-model="password" required>
     </div> 
-    <div class="form-group input-group">
+    <!-- <div class="form-group input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-lock"></i></span>
     </div>
-        <input class="form-control" placeholder="Repeat password" type="password">
-    </div>
+        <input class="form-control" placeholder="Repeat password" type="password" v-model="repeat" required>
+    </div> -->
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
     </div>   
-    <p class="text-center">Have an account? <a href="">Log In</a> </p>                                                                 
+    <p class="text-center">Have an account? <a><router-link to="/login">Log In</router-link></a> </p>                                                                 
 </form>
 </article>
 </div>
     </div>
 </template>
 <script>
-    import axios from "axios";
+
+
 export default {
-  name: "login",
-  props: ["baseURL"],
+  name: "signup",
+  // props: ["baseURL"],
   data() {
     return {
+      name: "",
       email: "",
       password: "",
+      contact: "",
       isAdmin: false,
     };
   },
-  methods: {
-    async login() {
-      const user = {
-        email: this.email,
-        password: this.password,
-      };
-
-      await axios
-        .patch(`https://my-fullstack-pject1.herokuapp.com/users/signup`, user)
-        .then((res) => {
-          localStorage.setItem("jwt", res.data.jwt);
-          axios
-            })
-            .then((res) => {
-              if (res.data.signup == true) {
-                alert("Registration successful!");
-                this.signup = res.data.signup;
-                this.$router.push({ name: "Home" });
-              }
-              else{
-                this.$router.push({ name: "login" });
-              }
-
-            })
-            .catch((err) => {
-                // sweetalert({
-                //     Text: "unable to log in!",
-                //     icon: "error",
-                //     closeOnClickOutside: false,
-                // });
-                console.log(err);
-            })
+   methods: {
+signup() 
+{
+  console.log(this.name, this.email, this.password, this.contact)
+  fetch("https://my-fullstack-pject1.herokuapp.com/users/signup", {
+    method: 'POST',
+        body: JSON.stringify(
+          {
+            name: this.name,
+          email: this.email,
+          password: this.password,
+          contact: this.contact,
         }
+        ),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        // mode: "no-cors"
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if(json.jwt){
+            alert('You are now registered')
+            localStorage.setItem("jwt", json.jwt);
+            this.$router.push({ name: "Home" });
+          }
+          else{
+            alert("Incorrect Credentials try again");
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
     },
-  };
+
+          },
+          };
+
+  // console.log('Registered Successfully')
+  // const person = {
+  //         name: this.name,
+  //         email: this.email,
+  //         password: this.password,
+  //         contact: this.contact,
+  //       }
+
+  //       console.log(person)
+//     import axios from "axios";
+// export default {
+  //   name: "signup",
+//   props: ["baseURL"],
+//   data() {
+//     return {
+//       name: "",
+//       email: "",
+//       contact: "",
+//       password: "",
+//       isAdmin: false,
+//     };
+//   },
+//   methods: {
+//     async signup() {
+//       const user = {
+//         name: this.name,
+//         email: this.email,
+//         contact: this.contact,
+//         password: this.password,
+//       };
+
+//       await axios
+//         .post(`https://my-fullstack-pject1.herokuapp.com/users/signup`, user)
+//         .then((res) => {
+//           localStorage.setItem("jwt", res.data.jwt);
+//           axios
+//             })
+//             .then((res) => {
+//               if (res.data.signup == true) {
+//                 alert("Registration successful!");
+//                 this.signup = res.data.signup;
+//                 this.$router.push({ name: "Home" });
+//               }
+//               else{
+//                 this.$router.push({ name: "login" });
+//               }
+
+//             })
+//             .catch((err) => {
+//                 // sweetalert({
+//                 //     Text: "unable to log in!",
+//                 //     icon: "error",
+//                 //     closeOnClickOutside: false,
+//                 // });
+//                 console.log(err);
+//             })
+//         }
+//     },
+//   };
   
+
+
+
+
 </script>
 <style>
     .divider-text {

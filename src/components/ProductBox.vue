@@ -8,22 +8,36 @@
             />
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
+            <router-link :to="{ name: 'ShowDetails', params: {id: product.id} }"><h5 class="card-title">{{ product.name }}</h5></router-link>
+            <!-- Here I used the superscript element   -->
+            <p class="card-text"><sup>R</sup>{{ product.price }}</p>
             <p class="card-text">
                 {{ product.description.substring(0, 65) }}...
             </p>
-            <a href="#" class="btn btn-primary">Edit</a>
+            <router-link :to="{ name: 'AlterProduct', params: {id: product.id} }"
+            id="alter-product" v-show="$route.name == 'AdminProduct'">Edit</router-link>
         </div>
     </div>
 </template>
 <script>
     export default {
         name: "ProductBox",
-        props: ["product"]
-    }
+        props: ["product"],
+        methods: {
+            showDetails(){
+                this.$router.push({
+                    name: "ShowDetails",
+                    params: {id: this.product.id},
+                });
+            },
+        },
+    };
 </script>
 <style scoped>
-    .card-img-top {
+    .card-img-top .embed-responsive {
         object-fit: cover;
     }
+    #alter-product {
+  float: right;
+}
 </style>

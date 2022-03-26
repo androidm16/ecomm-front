@@ -65,7 +65,10 @@ export default {
         description : this.description,
         imageURL : this.imageURL,
         price : this.price
-      }
+      };
+
+      console.log(this.baseURL+"Product/Product/add");
+      console.log(newProduct);
       await axios({
         method: 'post',
         url: this.baseURL+"Product/Product/add",

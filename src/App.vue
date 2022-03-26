@@ -1,6 +1,15 @@
 <template>
-    <Navbar/>
-  <router-view/>
+    <Navbar v-if="!['Signup', 'Login'].includes($route.name)"/>
+      <div style="min-height: 60vh">
+    <router-view
+      v-if="products && category"
+      :baseURL="baseURL"
+      :products="products"
+      :category="category"
+      @fetchData="fetchData"
+    >
+    </router-view>
+  </div>
 </template>
 <script>
 import Navbar from "./components/Navbar.vue";

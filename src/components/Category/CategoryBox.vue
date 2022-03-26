@@ -11,7 +11,7 @@
         <p class="card-text">
             {{ category.description.substring(0, 65) }}
         </p>
-        <a href="#" class="btn btn-primary">Edit</a>
+        <router-link id="alter-category" :to="{ name: 'AlterCategory', params: { id: category.id } }" v-show="$route.name == 'AdminCategory'">Edit</router-link>
     </div>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
     name: "CategoryBox",
     props: ["category"],
     methods: {
-            listProducts() {
+    listProducts() {
       this.$router.push({
         name: "ListProducts",
         params: { id: this.category.id },
@@ -32,5 +32,9 @@ export default {
 <style scoped>
 .card-img-top {
     object-fit: cover;
+}
+
+#alter-category {
+  float: right;
 }
 </style>
