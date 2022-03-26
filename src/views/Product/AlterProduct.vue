@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
+      this.$router.push({name : 'Login'});
       return;
     }
     this.id = this.$route.params.id;
